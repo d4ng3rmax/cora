@@ -1,0 +1,156 @@
+.transactions-page {
+  position: relative;
+  margin-top: 60px;
+  display: flex;
+}
+
+.credit {
+  color: var(--color-light-blue);
+}
+
+.content-wrapper {
+  width: 1032px;
+  margin-left: 316px;
+  gap: 48px;
+  display: flex;
+  flex-direction: column;
+}
+
+.transaction-filters {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.filter-button {
+  background-color: var(--color-lighter-gray);
+  border-radius: 20px;
+  border: none;
+  color: var(--color-dark-gray);
+  cursor: pointer;
+  font-size: 16px;
+  padding: 8px 17px 5px;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+}
+
+.filter-button.active {
+  background-color: var(--color-dark-gray);
+  color: var(--color-white);
+}
+
+.transactions-list {
+  margin: 24px 0;
+}
+
+.transaction-group-wrapper {
+  position: relative;
+}
+
+.transaction-timeline {
+  position: relative;
+}
+
+.transaction-group-wrapper:first-of-type .transaction-timeline:first-of-type .transaction-line:first-child {
+  display: none;
+}
+
+.transaction-line {
+  border-right: 1px var(--color-middle-gray) solid;
+  height: 16px;
+  width: 33px;
+}
+
+.transaction-container {
+  border: 1px solid var(--color-middle-gray);
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.transaction-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.transaction-table th,
+.transaction-table td {
+  background-color: transparent;
+  overflow: hidden;
+  padding: 12px;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.transaction-table td:nth-child(1) {
+  width: 35%;
+}
+
+.transaction-table td:nth-child(2) {
+  width: 30%;
+}
+
+.transaction-table td:nth-child(4) {
+  width: 150px;
+}
+
+.transaction-table td span:nth-child(1) {
+  vertical-align: top;
+}
+
+.transaction-header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.transaction-name {
+  display: inline-block;
+  margin-left: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 35%;
+}
+
+.transaction-date,
+.transaction-day-balance {
+  color: var(--color-dark-gray);
+  font-size: 0.8em;
+  margin: 10px 10px 0;
+}
+
+.transaction-date,
+.transaction-day-balance span {
+  font-weight: bold;
+}
+
+.transaction-table .transaction-balance {
+  font-weight: bold;
+  text-align: right;
+}
+
+.transactions-footer {
+  border-top: 1px solid #ddd;
+  display: flex;
+  gap: 20px;
+  justify-content: flex-end;
+  margin-top: 24px;
+  padding: 16px 0;
+}
+
+.footer-link {
+  background: none;
+  border: none;
+  color: var(--color-gray);
+  cursor: pointer;
+  font-size: 0.8rem;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-link:hover {
+  color: var(--color-main);
+}

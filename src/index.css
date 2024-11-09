@@ -1,4 +1,40 @@
+:root {
+  --color-button-hover: #ffe8e8;
+  --color-dark-main: #d4265a;
+  --color-error: #ee3636;
+  --color-gray: #6b7076;
+  --color-dark-gray: #333333;
+  --color-light-blue: #1a93da;
+  --color-middle-gray: #dfdfdf;
+  --color-light-gray: #dfdfdf;
+  --color-lighter-gray: #f0f4f8;
+  --color-main: #fe3e6d;
+  --color-success: #04aa6d;
+  --color-white: #ffffff;
+  --color-yellow: #fed36b;
+}
+
+@font-face {
+  font-family: "Avenir";
+  src: url("./assets/fonts/AvenirLTStd-Light.otf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Avenir";
+  src: url("./assets/fonts/AvenirLTStd-Medium.otf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+body {
+  font-family: "Avenir", sans-serif;
+  color: var(--color-gray);
+}
+
 * {
+  font-family: "Avenir", sans-serif;
   margin: 0;
   padding: 0;
   border: 0;

@@ -1,10 +1,13 @@
 const express = require("express");
+const cors = require("cors");
 const db = require("./db/transactions.json");
 const user = require("./db/user.json");
 const bodyParser = require("body-parser");
 
 const port = 3000;
 const app = express();
+
+app.use(cors());
 
 app.use(bodyParser.json());
 
@@ -26,7 +29,7 @@ app.post("/auth", (req, res) => {
 app.get("/list", (req, res) => {
   const token = req.headers.token;
 
-  if (!token || token === user.token) return res.sendStatus(401);
+  if (!token || token !== user.token) return res.sendStatus(401);
 
   return res.json(db);
 });

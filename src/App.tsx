@@ -1,37 +1,37 @@
-import logoImage from "./assets/logo.svg";
-// import Todo from "./Todo";
-// import { IBanking } from "./IBanking";
+import React from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import Home from './Home';
+import Todo from './Todo';
+import { Login } from "./IBanking/Login";
+import Transactions from './Transactions';
+import NotFound from './NotFound';
 
-import "./App.css";
+const App: React.FC = () => {
+  const isAuthenticated = !!localStorage.getItem('authToken');
 
-function App() {
   return (
-    <main id="page">
-      <div>
-        <img src={logoImage} alt="Cora" title="Cora"></img>
-        <h1>Hey There &#128075;</h1>
-        <h2>Tenha um ótimo teste!!!</h2>
-        <p>
-          <strong>Vamos começar?</strong> Como você faria os botões abaixo
-          abrirem as suas respectivas páginas? (Comece pela{" "}
-          <strong>TODO LIST</strong>, pois nela contem os próximos passos)
-        </p>
-        <p className="disclaimer">
-          &#9888; Você pode encontrar alguns <strong>erros</strong> no meio do
-          caminho, não desanime e fique atento para conseguir{" "}
-          <strong>visualizar</strong> e <strong>renderizar</strong> as páginas.
-        </p>
-        <ul className="buttons">
-          <li>
-            <a href="#">TO-DO LIST</a>
-          </li>
-          <li>
-            <a href="#">IBANKING</a>
-          </li>
-        </ul>
-      </div>
-    </main>
+    <div className="App">
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/ibanking" element={<Login />} />
+        <Route path="/todo" element={<Todo />} />
+        <Route
+          path="/transactions"
+          element={
+            isAuthenticated ? (
+              <Transactions />
+            ) : (
+              <>
+                {localStorage.setItem('errorMessage', 'Você precisa estar logado para acessar essa página.')}
+                <Navigate to="/ibanking" />
+              </>
+            )
+          }
+        />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </div>
   );
-}
+};
 
 export default App;

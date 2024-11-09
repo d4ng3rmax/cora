@@ -37,3 +37,10 @@
   background-color: var(--color-white);
   cursor: pointer;
 }
+
+.login__error {
+  color: var(--color-yellow);
+  font-weight: bold;
+  margin-top: 10px;
+  text-align: center;
+}
