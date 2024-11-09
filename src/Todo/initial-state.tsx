@@ -14,7 +14,7 @@ export const TODO_LIST = [
         correta de tasks? Parabéns, você finalizou a sua primeira task &#127881;
       </>
     ),
-    status: "pending",
+    status: "done",
     required: true,
   },
   {
@@ -26,7 +26,7 @@ export const TODO_LIST = [
         Nos ajude com o nosso produto de to-do list e resolva os bugs abaixo:
         <br />
         <br />
-        1. A troca de status, de <strong>pending</strong> para{" "}
+        1. A troca de status, de <strong>done</strong> para{" "}
         <strong>done</strong> e vice-versa, não esta funcionando corretamenta.
         <br />
         2. A busca não esta funcionando corretamente.
@@ -39,7 +39,7 @@ export const TODO_LIST = [
         5. Alguns links não estão funcionando.
       </>
     ),
-    status: "pending",
+    status: "done",
     required: true,
   },
   {
@@ -52,7 +52,7 @@ export const TODO_LIST = [
         alguma coisa errada com o CSS dessa página :/
       </>
     ),
-    status: "pending",
+    status: "done",
     required: true,
     links: [
       {
@@ -75,7 +75,7 @@ export const TODO_LIST = [
         <strong>Info:</strong> Sinta-se livre para fazer melhorias :)
       </>
     ),
-    status: "pending",
+    status: "done",
     required: true,
     links: [
       {
@@ -130,7 +130,7 @@ export const TODO_LIST = [
         <strong>CREDIT</strong>, dentro do response retornado pela api.
       </>
     ),
-    status: "pending",
+    status: "done",
     required: true,
     links: [
       {
@@ -165,7 +165,7 @@ export const TODO_LIST = [
         ObrigadaUm &#128640;
       </>
     ),
-    status: "pending",
+    status: "done",
     required: false,
   },
 ];
