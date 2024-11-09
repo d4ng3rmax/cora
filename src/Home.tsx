@@ -1,16 +1,25 @@
 import logoImage from "./assets/logo.svg";
 import { Link, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 import "./App.css";
 
 function App() {
+  const [logoutMessage, setLogoutMessage] = useState<string | null>(null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const storedLogoutMessage = localStorage.getItem('logoutMessage');
+    if (storedLogoutMessage) {
+      setLogoutMessage(storedLogoutMessage);
+      localStorage.removeItem('logoutMessage');
+    }
+  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem('authToken');
-    console.log('User logged out successfully');
-
-    navigate('/ibanking');
+    localStorage.setItem('logoutMessage', 'Você foi deslogado com sucesso.');
+    navigate('/');
   };
 
   return (
@@ -37,11 +46,21 @@ function App() {
             <Link to="/transactions">IBANKING</Link>
           </li>
           <li>
-            <Link to="/ibanking" onClick={handleLogout} className="logout-link">
+            <Link
+              to="/"
+              onClick={(e) => {
+                e.preventDefault();
+                handleLogout();
+              }}
+              className="logout-link"
+            >
               LOGOUT
             </Link>
           </li>
         </ul>
+        {logoutMessage && (
+          <p className="logout-message">{logoutMessage}</p>
+        )}
       </div>
     </main>
   );

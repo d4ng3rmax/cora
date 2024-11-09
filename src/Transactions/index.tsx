@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { ITransactionGroup, IResponseList, ITransactionItem } from './types';
+import { ITransactionGroup, IResponseList } from './types';
 import { formatDate, formatFullDate } from '../utils/utils';
 
 import "./index.css";
@@ -38,23 +38,9 @@ function Transactions() {
 
   const handleLogout = () => {
     localStorage.removeItem('authToken');
-    navigate('/ibanking', { replace: true });
+    localStorage.setItem('logoutMessage', 'Você foi deslogado com sucesso.');
+    navigate('/');
   };
-
-  const groupTransactionsByDate = (transactions: ITransactionGroup[]): Record<string, ITransactionItem[]> => {
-    return transactions.reduce((groups: Record<string, ITransactionItem[]>, transaction: ITransactionGroup) => {
-      const date = transaction.date;
-      if (!groups[date]) {
-        groups[date] = [];
-      }
-      if (Array.isArray(transaction.items)) {
-        groups[date].push(...transaction.items);
-      }
-      return groups;
-    }, {});
-  };
-
-  const groupedTransactions = groupTransactionsByDate(transactions);
 
   return (
     <main className="transactions-page">
@@ -69,11 +55,11 @@ function Transactions() {
         </div>
         {errorMessage && <p className="error-message">{errorMessage}</p>}
         <div className="transactions-list">
-          {Object.keys(groupedTransactions).length === 0 ? (
+          {transactions.length === 0 ? (
             <p>Nenhuma transação encontrada.</p>
           ) : (
-            Object.entries(groupedTransactions).map(([date, items], index) => {
-              const filteredItems = items.filter(
+            transactions.map((transactionGroup, index) => {
+              const filteredItems = transactionGroup.items.filter(
                 (item) => item.entry === selectedFilter
               );
 
@@ -87,7 +73,7 @@ function Transactions() {
                     <div className="transaction-line"></div>
                     <div className="transaction-header">
                       <h2 className="transaction-date">
-                        {formatFullDate(date)}
+                        {formatFullDate(transactionGroup.date)}
                       </h2>
                       <span className="transaction-day-balance">
                         saldo do dia <strong>R$ 3.780,08</strong>

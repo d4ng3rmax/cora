@@ -77,3 +77,9 @@
   color: var(--color-dark-main);
   zoom: 1.1;
 }
+
+#page .logout-message {
+  color: var(--color-dark-gray);
+  margin-top: 10px;
+  font-size: 1.3em;
+}
