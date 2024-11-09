@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { ITransactionGroup, IResponseList } from './types';
+import { ITransactionGroup, IResponseList, ITransactionItem } from './types';
 import { formatDate, formatFullDate } from '../utils/utils';
 
 import "./index.css";
@@ -41,6 +41,21 @@ function Transactions() {
     navigate('/ibanking', { replace: true });
   };
 
+  const groupTransactionsByDate = (transactions: ITransactionGroup[]): Record<string, ITransactionItem[]> => {
+    return transactions.reduce((groups: Record<string, ITransactionItem[]>, transaction: ITransactionGroup) => {
+      const date = transaction.date;
+      if (!groups[date]) {
+        groups[date] = [];
+      }
+      if (Array.isArray(transaction.items)) {
+        groups[date].push(...transaction.items);
+      }
+      return groups;
+    }, {});
+  };
+
+  const groupedTransactions = groupTransactionsByDate(transactions);
+
   return (
     <main className="transactions-page">
       <div className="content-wrapper">
@@ -54,11 +69,11 @@ function Transactions() {
         </div>
         {errorMessage && <p className="error-message">{errorMessage}</p>}
         <div className="transactions-list">
-          {transactions.length === 0 ? (
+          {Object.keys(groupedTransactions).length === 0 ? (
             <p>Nenhuma transação encontrada.</p>
           ) : (
-            transactions.map((transactionGroup, index) => {
-              const filteredItems = transactionGroup.items.filter(
+            Object.entries(groupedTransactions).map(([date, items], index) => {
+              const filteredItems = items.filter(
                 (item) => item.entry === selectedFilter
               );
 
@@ -72,7 +87,7 @@ function Transactions() {
                     <div className="transaction-line"></div>
                     <div className="transaction-header">
                       <h2 className="transaction-date">
-                        {formatFullDate(transactionGroup.date)}
+                        {formatFullDate(date)}
                       </h2>
                       <span className="transaction-day-balance">
                         saldo do dia <strong>R$ 3.780,08</strong>
