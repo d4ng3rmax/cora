@@ -4,12 +4,27 @@
       "items": [
         {
           "id": "abc123def456ghi789",
-          "description": "Compra de produtos eletrônicos",
+          "description": "Recebimentos por Pix ou TED",
           "label": "Compra aprovada",
+          "entry": "CREDIT",
+          "amount": 150000,
+          "name": "Supermercado Ana Rosa",
+          "dateEvent": "2024-09-20T08:15:17Z",
+          "status": "COMPLETED"
+        }
+      ],
+      "date": "2024-02-01"
+    },
+    {
+      "items": [
+        {
+          "id": "abc123def456ghi459",
+          "description": "Estornos",
+          "label": "Estorno aprovado",
           "entry": "DEBIT",
           "amount": 150000,
           "name": "Supermercado Ana Rosa",
-          "dateEvent": "2024-02-01T08:15:17Z",
+          "dateEvent": "2024-09-20T08:15:17Z",
           "status": "COMPLETED"
         }
       ],
@@ -39,11 +54,11 @@
           "entry": "CREDIT",
           "amount": 4500,
           "name": "Empresa ABC",
-          "dateEvent": "2023-12-11T16:13:24Z",
+          "dateEvent": "2024-01-11T14:47:46Z",
           "status": "COMPLETED"
         }
       ],
-      "date": "2023-12-11"
+      "date": "2024-01-11"
     },
     {
       "items": [
@@ -54,12 +69,12 @@
           "entry": "DEBIT",
           "amount": 7000,
           "name": "Empresa XYZ",
-          "dateEvent": "2023-10-15T18:10:21Z",
+          "dateEvent": "2024-01-11T14:47:46Z",
           "status": "COMPLETED"
         }
       ],
-      "date": "2023-10-15"
+      "date": "2024-01-11"
     }
   ],
-  "itemsTotal": 4
+  "itemsTotal": 5
 }
