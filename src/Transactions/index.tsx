@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { ITransactionGroup, IResponseList } from './types';
 import { formatDate, formatFullDate } from '../utils/utils';
 
-import "./Transactions.css";
+import "./index.css";
 
 function Transactions() {
   const [transactions, setTransactions] = useState<ITransactionGroup[]>([]);

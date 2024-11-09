@@ -8,7 +8,7 @@
           "label": "Compra aprovada",
           "entry": "DEBIT",
           "amount": 150000,
-          "name": "João da Silva",
+          "name": "Supermercado Ana Rosa",
           "dateEvent": "2024-02-01T08:15:17Z",
           "status": "COMPLETED"
         }
