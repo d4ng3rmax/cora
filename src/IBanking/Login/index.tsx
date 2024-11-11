@@ -1,6 +1,5 @@
 import { useState, ChangeEvent, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 import logoFullImage from '../../assets/logo-full.svg';
 import arrowRightImage from '../../assets/arrow-right.svg';
 
@@ -10,7 +9,6 @@ function Login() {
   const [cpf, setCpf] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const storedErrorMessage = localStorage.getItem('errorMessage');
