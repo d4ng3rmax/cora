@@ -2,9 +2,9 @@ import { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { ITransactionGroup, IResponseList, ITransactionItem } from './types';
-import { formatDate, formatFullDate } from '../utils/utils';
 import FilterButtons from '../components/FilterButtons';
 import TransactionsFooter from '../components/TransactionsFooter';
+import TransactionGroup from '../components/TransactionGroup';
 
 import "./index.css";
 
@@ -41,7 +41,7 @@ function Transactions() {
   const handleLogout = () => {
     localStorage.removeItem('authToken');
     navigate('/', { replace: true });
-    console.log("Usuário deslogado")
+    console.log("Usuário deslogado");
   };
 
   const groupTransactionsByDate = (transactions: ITransactionGroup[]): Record<string, ITransactionItem[]> => {
@@ -62,63 +62,15 @@ function Transactions() {
   return (
     <main className="transactions-page">
       <div className="content-wrapper">
-
         <FilterButtons selectedFilter={selectedFilter} setSelectedFilter={setSelectedFilter} />
-
         {errorMessage && <p className="error-message">{errorMessage}</p>}
         <div className="transactions-list">
           {Object.keys(groupedTransactions).length === 0 ? (
             <p>Nenhuma transação encontrada.</p>
           ) : (
-            Object.entries(groupedTransactions).map(([date, items], index) => {
-              const filteredItems = items.filter(
-                (item) => item.entry === selectedFilter
-              );
-
-              if (filteredItems.length === 0) {
-                return null;
-              }
-
-              return (
-                <div key={index} className="transaction-group-wrapper">
-                  <div className="transaction-timeline">
-                    <div className="transaction-line"></div>
-                    <div className="transaction-header">
-                      <h2 className="transaction-date">
-                        {formatFullDate(date)}
-                      </h2>
-                      <span className="transaction-day-balance">
-                        saldo do dia <strong>R$ 3.780,08</strong>
-                      </span>
-                    </div>
-                    <div className="transaction-line"></div>
-                  </div>
-                  <div className="transaction-container">
-                    <table className="transaction-table">
-                      <tbody>
-                        {filteredItems.map((item) => (
-                          <tr key={item.id}>
-                            <td>
-                              {item.entry === 'DEBIT' ? (
-                                <span className="icon-debit">&#8592;</span>
-                              ) : (
-                                <span className="icon-credit">&#8594;</span>
-                              )}
-                              <span className={`transaction-name ${item.entry === 'DEBIT' ? 'debit' : 'credit'}`}>{item.name}</span>
-                            </td>
-                            <td>{item.description}</td>
-                            <td>{formatDate(item.dateEvent)}</td>
-                            <td className={`transaction-balance ${item.entry === 'DEBIT' ? 'debit' : 'credit'}`}>
-                              {item.entry === 'DEBIT' ? '-' : '+'} R$ {(item.amount / 100).toFixed(2).replace('.', ',')}
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              );
-            })
+            Object.entries(groupedTransactions).map(([date, items]) => (
+              <TransactionGroup key={date} date={date} items={items} selectedFilter={selectedFilter} />
+            ))
           )}
         </div>
         <TransactionsFooter handleLogout={handleLogout} />
