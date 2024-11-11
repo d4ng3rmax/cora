@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { ITransactionGroup, IResponseList, ITransactionItem } from './types';
 import { formatDate, formatFullDate } from '../utils/utils';
+import FilterButtons from '../components/FilterButtons';
+import TransactionsFooter from '../components/TransactionsFooter';
 
 import "./index.css";
 
@@ -60,14 +62,9 @@ function Transactions() {
   return (
     <main className="transactions-page">
       <div className="content-wrapper">
-        <div className="transaction-filters">
-          <button className={`filter-button ${selectedFilter === 'DEBIT' ? 'active' : ''}`} onClick={() => setSelectedFilter('DEBIT')}>
-            Débito
-          </button>
-          <button className={`filter-button ${selectedFilter === 'CREDIT' ? 'active' : ''}`} onClick={() => setSelectedFilter('CREDIT')}>
-            Crédito
-          </button>
-        </div>
+
+        <FilterButtons selectedFilter={selectedFilter} setSelectedFilter={setSelectedFilter} />
+
         {errorMessage && <p className="error-message">{errorMessage}</p>}
         <div className="transactions-list">
           {Object.keys(groupedTransactions).length === 0 ? (
@@ -124,10 +121,7 @@ function Transactions() {
             })
           )}
         </div>
-        <footer className="transactions-footer">
-          <a href="/" className="footer-link">Home</a>
-          <button onClick={handleLogout} className="footer-link">Logout</button>
-        </footer>
+        <TransactionsFooter handleLogout={handleLogout} />
       </div>
     </main>
   );
