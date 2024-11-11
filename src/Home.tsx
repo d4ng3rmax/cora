@@ -18,8 +18,8 @@ function App() {
 
   const handleLogout = () => {
     localStorage.removeItem('authToken');
-    localStorage.setItem('logoutMessage', 'Você foi deslogado com sucesso.');
     navigate('/');
+    console.log("Usuário deslogado")
   };
 
   return (
